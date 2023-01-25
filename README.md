@@ -70,3 +70,32 @@ myTextSelector.innerText = 'New text for selector';
 
 console.log(myTextSelector);
 ```
+
+
+____
+____
+____
+____
+____
+____
+# Full JAvaScript
+___
+# Переменные 
+**let** - может менять занчение во время работы программы(в прошлых версия js-es5 использовался var)
+Пример:
+```js
+let name = 'Иван'
+
+console.log(name)//Вывод 'Иван'
+
+name = 'Егор'
+console.log(name)//Вывод 'Егор'
+```
+
+
+**const ** - не может менять значение
+Пример:
+```js
+const year = 2002
+console.lgo(year)
+```
