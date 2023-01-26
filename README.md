@@ -310,7 +310,7 @@ function summ(a, b) {
 let result = summ(summ(15,30)+summ(12,13))
 console.log(result)// 60
 ```
-## Самовызывающая функция LIFE
+## Самовызывающая функция LIFE (сейчас практически не используется)
 Пример:
 ```js
 (function(){
