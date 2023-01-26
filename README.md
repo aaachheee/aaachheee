@@ -273,7 +273,14 @@ function sayHi(){
 cosnole.log('Привет')
 }
 ```
-______
+## Аргументы функций 
+```js
+function sayHi(name) {
+	console.log(`Привет, ${name}! Как твои дела?`);
+}
+
+sayHi('Igor')
+```
 # Стрелочные функции
 
 ## структура:
@@ -290,4 +297,38 @@ const qwe = (a,b)=>{
 }
 qwe(14,15)
 ```
-______
+## RETURN
+После return в функции она сразу завершает свою работу
+```js
+function summ(a, b) {
+	const result = a + b;
+	return result;//Возвращает переменную result
+}
+summ(10, 15)//ничего не выведет в консоль, но результат здесь будет
+const res = summ(10, 15);
+console.log(res);
+```
+
+## Функция как агрумент
+```js
+function summ(a, b) {
+	return a + b
+}
+consoel.log(summ(10,15))//Вывод 25
+
+```
+**Функции могут передваться внутрь функции в качетве аргумента
+```js
+function summ(a, b) {
+	return a + b
+}
+let result = summ(summ(15,30)+summ(12,13))
+console.log(result)// 60
+```
+## Самовызывающая функция LIFE
+Пример:
+```js
+(function(){
+console.log('Привет дорогой пользователь')
+})()**;** //Выведет Привет дорогой пользователь без вызова функции
+```
