@@ -344,3 +344,57 @@ const result = summ(10,30)
 console.log(result)
 ```
 # Массивы
+**Массив** - коллекция каких-либо данных
+```js
+const array = ['Audi','BMW','Mercedes','Mazda']
+```
+## Методы массивов
+* arr.push(items) - Добавить элемент в конец массива
+* arr.pop() - Удалить элемент массива
+* arr.shift() - Удалить элемент из начала массива
+* arr.unshift(...items) - Добавить элемент в начало массива
+* arr.splice([С какого индекса начать],[Сколько удалить, либо заменить])
+
+```js
+const array = ['Audi','BMW','Mercedes','Mazda']
+array.slice[2,2]//Вывод 'Audi' 'BMW'
+```
+## Обход массива циклом for
+```js
+const array = ['Audi','BMW','Mercedes','Mazda']
+
+for(let item of array){
+	console.log(item)
+}
+```
+
+## Обход массива циклом forEach()
+```js
+const array = ['Audi','BMW','Mercedes','Mazda']
+array.forEach(function(brand, index){
+console.log(`${brand} => ${index}`)
+})
+
+//---------------------------
+function printBrand (brand, index){
+console.log(`${brand} => ${index}`)
+}
+array.forEach(printBrand)//Обязательно не вызвать функцию в методе
+
+//-------------------
+array.forEach((brand,index)=> console.lgo(`&{brand} => &{index}`))
+```
+
+# Объекты
+```js
+const Perosn = {
+	age = 30,
+	name = 'Mark'
+	isMarried = false,
+	profession = developer
+}
+console.log(person.name)//Обращение к свойству объекта
+console.log(['age'])
+let propertyname = 'porfession'
+console.log(person[propertename])
+```
