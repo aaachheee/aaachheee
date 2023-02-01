@@ -398,3 +398,69 @@ console.log(['age'])
 let propertyname = 'porfession'
 console.log(person[propertename])
 ```
+## Методы в объектах
+```js
+const person = {
+userName = 'Марк',
+age = 30,
+isMarried = false,
+	sayHi: function(){
+	console.log ('Привет!')
+	}
+}
+
+person.sayHI() //Выведет Привет!
+
+//--------Добавление метода
+person.sayGoodBye = function(name){
+	console.log (`${name}, Пока!`)
+}
+
+person.sayGoodBye('Юрий')
+```
+## Обход объкта циклом for in
+```js
+const person = {
+userName = 'Марк',
+age = 30,
+isMarried = false,
+	sayHi: function(){
+	console.log ('Привет!')
+	}
+}
+
+for (let key in person){
+	console.log(key)
+	console.log(key, ':', person[key])
+}
+```
+
+#THIS
+```js
+const person = {
+userName = 'Марк',
+age = 30,
+isMarried = false,
+	sayHi: function(name){
+	console.log (`${name}, Привет! Меня зовут ${this.userName}`)
+	}
+}
+person.sayHI('Юрий')
+```
+
+# Классы 
+**Класс** - как чертеж для всех будующих объектов person которые будут передваться на его основе
+class Person {
+	constructor(userName, age, isMarried){
+	this.userName = userName
+	this.age = age
+	this.isMarried = isMarried
+	}
+	sayHi(name){
+	consoel.log(`Привет${name}! Меня зовут ${this.userName}`)
+	}
+}
+const person1 = new Person('Марк',20,false)
+const person2 = new Person('Павел',22,true)
+person1.sayHi("Юрий")
+person2.sayHi("Юрий")
