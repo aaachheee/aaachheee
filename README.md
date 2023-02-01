@@ -482,3 +482,90 @@ person2.sayHi("Юрий")
 * .remove - удалить
 * .toggle - добавить класс, если его нет, иначе удалить.
 * .contains - проверка наличия класса, возвращает true/false
+
+# Работа с атрибутами
+* **getAttribute(attrName)** — возвращает значение указанного атрибута
+* **setAttribute(name, value)** — добавляет указанные атрибут и его значение к элементу
+* **hasAttribute(attrName)** — возвращает true при наличии у элемента указанного атрибута
+* **removeAttribute(attrName)** — удаляет указанный атрибут
+* 
+* **toggleAttribute(name, force)** — добавляет новый атрибут при отсутствии или удаляет существующий атрибут.
+* **hasAttributes()** — возвращает true, если у элемента имеются какие-либо атрибуты
+* **getAttributesNames()** — возвращает названия атрибутов элемента
+```HTML
+<div class="dom-example none">
+	<div class="example-block">
+		<img id="logo" src="./img/js.png" alt="Логотип" /><br />
+		<input id="button" type="submit" value="Кнопка" />
+	</div>
+</div>
+```
+
+```js
+const img = document.querySelector('#logo');
+img.getAttribute('src'); // получаем значение src
+
+img.setAttribute('src', './img/php.png'); // Изменить значение Src 
+img.setAttribute('width', '200'); // Задать ему размер
+
+const button = document.querySelector('#button')
+
+button.getAttribute('value', 'какой-то текст')
+//Быстрее будет так
+button.value = 'какой-то текст'
+```
+
+# Прослушка события 
+```HTML
+<div class="dom-example none">
+	<div class="example-block">
+		<img id="logo" src="./img/js.png" alt="Логотип" /><br />
+		<input id="button" type="submit" value="Кнопка" />
+	</div>
+</div>
+```
+
+```js
+const button = document.querySelector('#button')
+const img = document.querySelector('#logo');
+button.value = 'Удалить'
+
+button.addEventListiner('click',function(){
+	console.log('click')
+	igm.remove()
+})
+//Также может быть
+button.onclick = function(){
+	console.log('click')
+	igm.remove()
+}
+```
+## Прослушка событий ввод текста 
+* Объект options, который определяет характеристики объекта, прослушивающего событие. Доступны следующие варианты:
+
+* **capture: Boolean** указывает, что события этого типа будут отправлены зарегистрированному обработчику listener перед отправкой на EventTarget, расположенный ниже в дереве DOM.
+* **once: Boolean** указывает, что обработчик должен быть вызван не более одного раза после добавления. Если true, обработчик автоматически удаляется при вызове.
+* **passive: Boolean** указывает, что обработчик никогда не вызовет preventDefault(). Если всё же вызов будет произведён, браузер должен игнорировать его и генерировать консольное предупреждение. Пример Улучшение производительности прокрутки с помощью passive true
+* **Non-standard mozSystemGroup: Boolean** указывает, что обработчик должен быть добавлен в системную группу. Доступно только в коде, запущенном в XBL или в расширении Chrome.
+```js
+const inputText = document.querySelector('#input-text');
+const textBlock = document.querySelector('#text-block');
+
+inputText.addEventListener(
+	'input',
+	function () {
+		console.log(inputText.value);
+		textBlock.innerText = inputText.value;
+	},
+	{ once: true } // означает что событие будет вызванно только один раз
+);
+
+inputText.addEventListener('input', inputHandler, { once: true });
+
+function inputHandler() {
+	console.log(inputText.value);
+	textBlock.innerText = inputText.value;
+}
+
+```
+# Объекст EVENT
