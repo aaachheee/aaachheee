@@ -69,8 +69,19 @@ let myTextSelector = document.querySelector('p.text');
 myTextSelector.innerText = 'New text for selector';
 
 console.log(myTextSelector);
-```
 
+```
+## Коллкция элементов
+```js
+const headings = document.querySelector('h2')
+
+selector.classList.add('red') // Выдаст ошибку так как const headings не имеет одного значения h2, а имеет что-то типо массив
+//для того чтобы добавить на каждый заголовок класс red используем перебор циклом for of
+
+for (let item of headings){
+	item.classList.add('red')
+}
+```
 
 ____
 ____
@@ -450,6 +461,7 @@ person.sayHI('Юрий')
 
 # Классы 
 **Класс** - как чертеж для всех будующих объектов person которые будут передваться на его основе
+```js
 class Person {
 	constructor(userName, age, isMarried){
 	this.userName = userName
@@ -464,3 +476,9 @@ const person1 = new Person('Марк',20,false)
 const person2 = new Person('Павел',22,true)
 person1.sayHi("Юрий")
 person2.sayHi("Юрий")
+```
+# ClassList
+* .add - Добавить
+* .remove - удалить
+* .toggle - добавить класс, если его нет, иначе удалить.
+* .contains - проверка наличия класса, возвращает true/false
