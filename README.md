@@ -4,9 +4,10 @@
 0. [Определение](#Определение)
 1. [Компонента](#Компонента)
 2. [JSX](#JSX)
-
+...
+- [create-react-app](#create-react-app)
 ## Проект
-- 1 -
+- 01 - Знакомство с create-react-app
 - 2 -
 
 
@@ -69,8 +70,41 @@ retrun(
 )
 ```
 
+___
+___
+___
+___
+___
+<a name="create-react-app"></a>
+## create-react-app
+create-react-app - утилита, включает в себя необходимое средство для процесса разработки, запуска react приложений, создания подкашн версии
 
+- [create-react-app](https://create-react-app.dev)
+- [create-react-app](https://npmjs.com/package/create-react-app)
 
+```cmd
+npx create-react-app
+```
+### Информация 
+- public: 
+- public/index.html - файл куда мантируется приложение 
+- public/manifest.json - прописанны пути для иконок на различные устройства
+- public/robots.txt - инструкция для ботов которые сканируют веб-сайт
+
+-src: 
+- src/index.js - импортирует ReactDom: в public/index.html
+- src/app.js - модуль который возвращает JSX код (не HTML) используя команду export default App
+- src/app.css - стили модуля 
+- src/index.css - стили сайта
+- src/app.test.js - модуль тестирования нашего сайта используя <React.StrictMode>
+
+.gitignore - файлы которые будут игнорироваться и не загружатсья в git
+
+### Команды
+- npm start - Запуск сервера разработки
+- npm run build - Объединяет приложнения в статические файлы для продакшна
+- npm test - запускает тестовый бегун. (мы их сами создаем)
+- npm run eject -НЕ РЕКОМЕНДУЕТСЯ, отвязывает React от create-react-app (пути обратно нет)
 
 ___
 ___
