@@ -4,7 +4,7 @@
 0. [Определение](#Определение)
 1. [Компонента](#Компонента)
 2. [JSX](#JSX)
-3. [работа с компонентами](#работа с компонентами)
+3. [работа_с_компонентами](#работа с компонентами)
 ...
 - [create-react-app](#create-react-app)
 ## Проект
@@ -114,6 +114,60 @@ npx create-react-app
    инсталирум проек npm i (npm install)\
    запускаем в режиме разработки npm start
 2. Создаем свой компаненет (**ОБЯЗАТЕЛЬНО С ЗАГЛАВНОЙ БУКВЫ**) в src/App.js
+```js
+function MyComponent(){
+  return (
+  <div>
+    <h1>Hello from MEComponent</h1>
+    <button>Like!</button>
+  </div>
+  )
+}
+
+```
+И добавляем компанент на сайт
+
+```js
+function App() {
+  return (
+    <div className="App">
+      <MyComponent />
+      <MyComponent />
+    </div>
+  );
+}
+```
+
+Итоговый вариант
+```js
+import './App.css';
+
+function MyComponent(){
+  return (
+  <div>
+    <h1>Hello from MEComponent</h1>
+    <button>Like!</button>
+  </div>
+  )
+}
+
+
+function App() {
+  return (
+    <div className="App">
+      <MyComponent />
+      <MyComponent />
+    </div>
+  );
+}
+
+export default App;
+```
+3. вынесем данный компонент в отдельный файл js(**ОДИН КОМПОНЕНТ ОДИН ФАЙЛ**)
+		1. Создадим папку src/components
+		2. Создадим файл src/components/MyComponent.js
+		3. Перенесем туда код
+		4. импортируем данный компонент в App.js
 ___
 ___
 ___
