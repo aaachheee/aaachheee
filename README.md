@@ -163,11 +163,78 @@ function App() {
 
 export default App;
 ```
-3. вынесем данный компонент в отдельный файл js(**ОДИН КОМПОНЕНТ ОДИН ФАЙЛ**)
-		1. Создадим папку src/components
-		2. Создадим файл src/components/MyComponent.js
-		3. Перенесем туда код
-		4. импортируем данный компонент в App.js
+3. вынесем данный компонент в отдельный файл js(**ОДИН КОМПОНЕНТ ОДИН ФАЙЛ**)\
+		1. Создадим папку src/components\
+		2. Создадим файл src/components/MyComponent.js\
+		3. Перенесем туда код\
+		
+		```js
+		function MyComponent(){
+		    return (
+		    <div>
+		      <h1>Hello from MEComponent</h1>
+		      <button>Like!</button>
+		    </div>
+		    )
+		}
+
+		export default MyComponent
+		```
+		
+		5. импортируем данный компонент в App.js\
+		```js
+			import './App.css';
+			import MyComponent from'./components/MyComponent'
+
+
+
+			function App() {
+			  return (
+			    <div className="App">
+			      <MyComponent />
+			    </div>
+			  );
+			}
+
+			export default App;
+
+		```
+## Компоненты со возможностью принимать свойства
+1. Копируем шаблон, все как в начале прошлого пункта
+2. Создадим компонент src/components/PetInfo.js
+```js
+function PetInfo(){
+	return <h1>My dog is 3 year</h1> // Скобочки не надо так как возврощаем 1 элемент
+}
+export default PetInfo
+```
+4. Добавляем атрибут в JSX 
+```js
+<PetInfo animal="dog" years = "2" color="black"/>
+```
+
+5. Используя props берем заданное значение, в комопненеты PetInfo.js
+```js
+function PetInfo(props){
+    
+	return <h1 > 
+        
+        <font color={props.color}>My {props.animal} is {props.years} year </font> </h1> // Скобочки не надо так как возврощаем 1 элемент
+}
+export default PetInfo
+```
+6. Деструризация - возможность забирать свойства из объекта props
+```js
+function PetInfo(props){
+    const{animal,age,color} = props
+    
+	return <h1 > 
+        
+        <font color={props.color}>My {props.animal} is {props.years} year </font> </h1> // Скобочки не надо так как возврощаем 1 элемент
+}
+export default PetInfo
+```
+
 ___
 ___
 ___
