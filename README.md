@@ -5,6 +5,7 @@
 1. [Компонента](#Компонента)
 2. [JSX](#JSX)
 3. [работа_с_компонентами](#работа с компонентами)
+4. [conditial_rendering](#conditial_rendering)
 ...
 - [create-react-app](#create-react-app)
 ## Проект
@@ -106,8 +107,7 @@ npx create-react-app
 - npm run build - Объединяет приложнения в статические файлы для продакшна
 - npm test - запускает тестовый бегун. (мы их сами создаем)
 - npm run eject -НЕ РЕКОМЕНДУЕТСЯ, отвязывает React от create-react-app (пути обратно нет)
-
-
+<a name=""></a>
 ### Работа с компонентами
 <a name="работа с компонентами"></a>
 1. Копируем шаблон template\
@@ -235,7 +235,85 @@ function PetInfo(props){
 export default PetInfo
 ```
 
+
+
+<a name = "conditial_rendering"><a/>
+##Условный рендеринг (Возврат разных значений используя свойства)
+1. Копируем шаблон template
+2. Также как в прошлом пункте 
+3. Также
+4. Создаем компонент в папке /4/src/components/PetInfo.js
+
+```js
+function PetInfo(props){
+    const {animal,age,hasPet} = props 
+    const text = hasPet ? `My ${animal} is ${age} years` : `I dont have any pets`
+
+    return(
+        <h1>{text}</h1>
+    )
+}
+export default PetInfo;	
+```
+5. Редактируем App.js
+```js
+<PetInfo animal="dog" age={5} hasPet = {true}/>
+      <PetInfo animal="cat" age={2} hasPet = {false}/>
+      <PetInfo animal="dog" age={5} hasPet/> // true
+      <PetInfo animal="cat" age={4} />	//false
+```
+6. Добавили тернарный оператор в jsx 
+```js
+function PetInfo(props){
+    const {animal,age,hasPet} = props 
+    const text = hasPet ? `My ${animal} is ${age} years` : `I dont have any pets`
+
+    return hasPet ?(
+        <h1>My{animal} is {age} years</h1>
+) : (
+    <h4>I do not have any pets</h4>
+)
+}
+export default PetInfo;	
+```
 ___
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 ___
 ___
 ___
