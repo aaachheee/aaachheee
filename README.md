@@ -237,8 +237,9 @@ export default PetInfo
 
 
 
+
+## Условный рендеринг (Возврат разных значений используя свойства)
 <a name = "conditial_rendering"><a/>
-##Условный рендеринг (Возврат разных значений используя свойства)
 1. Копируем шаблон template
 2. Также как в прошлом пункте 
 3. Также
@@ -275,6 +276,69 @@ function PetInfo(props){
 )
 }
 export default PetInfo;	
+```
+<a name=""><a/>	
+## Компонент состояния
+Создаем рабочую область(первые три прошлых пункта)
+4.создадим компонент \05\components\RandomNuber.js
+```js
+function RandomNumber(){
+    return(
+        <div>
+            <h1>78</h1>
+            <button>Generate random number</button>
+        </div>
+    )
+}
+
+export default RandomNumber;	
+```
+5. Импорт функции в файл src/App.js
+6. Изменили свойсва в файле src/App.js
+```css
+.App{
+  text-align: center;
+}
+
+h1{
+  font-size: 3.5 rem;
+  color: blue;
+  margin-top: 5vw;
+}
+button{
+  padding: 10px;
+  width: 10vw;
+  border: none;
+  border-radius: 40px;
+  margin-top: 5vw;
+  background-color: bisque;
+  transition: 1s;
+}
+button:hover{
+  background-color: aquamarine;
+}	
+```
+7. Добавим состояние (хук) в Random.Number
+	- импорируем метод useState
+	- создаем синтаксис дитсруктуризации по шаблону:
+```js
+const[перменнная, функция_возврата_позволяющая_менять_переменную] = use state(значение по умолчанию)
+```
+	-создание функции генерации случайного числа
+```js
+function generateRandomNumber(){
+    return Math.floor(Math.Random*100)
+}
+```
+	- добавим функцию в состояние
+```js
+const cahngeRandomNum = () =>{
+        setRandomNum(generateRandomNumber())
+    }
+```
+	- Добавим свойство onClick для кнопки
+```js
+<button onClick={cahngeRandomNum}>Generate random number</button>	
 ```
 ___
 	
