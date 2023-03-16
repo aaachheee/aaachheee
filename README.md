@@ -6,6 +6,7 @@
 2. [JSX](#JSX)
 3. [Работа_с_компонентами](#Работа_с_компонентами)
 4. [conditial_rendering](#conditial_rendering)
+5. [Changing the State of a Child Componen](#Changing the State of a Child Componen)
 ...
 - [create-react-app](#create-react-app)
 ## Проект
@@ -340,6 +341,55 @@ const cahngeRandomNum = () =>{
 ```js
 <button onClick={cahngeRandomNum}>Generate random number</button>	
 ```
+<a name="Changing the State of a Child Component"></a>
+## Изменение состояния дочернего компонента 
+1. шаблон template
+2. npm i
+3.
+4. App.css
+```css
+h1{
+  font-size: 5em;
+  color:darkorchid;
+  font-family: sans-serif;
+}
+
+button{
+  padding: 15px 25px;
+  background-color: darkslateblue;
+  color:white;
+  border-radius: 10px;
+  font-size: 2.5em;
+  transition: .3s;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: rgb(124, 117, 172);
+ 
+}
+
+```
+5. Создадим компоненты Button и Counter, которые будут выводить количество кликов\
+	
+Counter.js - text:
+```js	
+function Countter(){
+    return(
+    <h1>Total click: 0</h1>
+    )
+}
+export default Countter	
+```
+Button.js - кнопка:
+```js
+function Button(){
+    return <button>Click me!</button>
+}
+
+export default Button
+```
+
 ___
 	
 	
