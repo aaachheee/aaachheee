@@ -370,9 +370,9 @@ button:hover{
 }
 
 ```
-5. Создадим компоненты Button и Counter, которые будут выводить количество кликов\
+5. Создадим компоненты src/components/Button и src/components/Counter, которые будут выводить количество кликов\
 	
-Counter.js - text:
+src/components/Counter.js - text:
 ```js	
 function Countter(){
     return(
@@ -381,7 +381,7 @@ function Countter(){
 }
 export default Countter	
 ```
-Button.js - кнопка:
+src/components/Button.js - кнопка:
 ```js
 function Button(){
     return <button>Click me!</button>
@@ -389,10 +389,159 @@ function Button(){
 
 export default Button
 ```
+6. Импортировали Counter и Buttomn в src/App.js
+```js
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
 
-___
-	
-	
+function App() {
+  return (
+    <div className="App">
+      
+      <Countter />
+      <Button />
+      <Button />
+      <Button />
+      <Button />
+    </div>
+  );
+}
+
+export default App;
+
+```
+1. Добавляем состояние в src/App.js
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+
+
+function App() {
+  const[count,setCount]=useState(0)
+  
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      <Button />
+      <Button />
+      <Button />
+      <Button />
+    </div>
+  );
+}
+
+export default App;
+
+```
+2. Передадим занчения в сам компонент: src\components\Countter.js
+        
+```js
+function Countter({counter}){
+    return(
+    <h1>Total click: {counter}</h1>
+    )
+}
+export default Countter
+```
+        
+3. Добавим доступ к двум свойствам для Button внтури файла /src/App.js
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+
+
+function App() {
+  const[count,setCount]=useState(0)
+  
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      <Button count = {count} 
+      OnClick = {setCount}/>
+      <Button count = {count} 
+      OnClick = {setCount}/>
+      <Button count = {count} 
+      OnClick = {setCount}/>
+      <Button count = {count} 
+      OnClick = {setCount}/>
+      
+    </div>
+  );
+}
+
+export default App;
+    
+```
+4. Выполним деструктурицзацию для этих свойств внутри компонента src/components/Button.js
+```js
+function Button({count, OnClick }){
+    return <button OnClick={()=>{
+        OnClick(count+1)
+        }}>Click me!</button>
+}
+
+export default Button        
+```
+Сделаем вызов действий без передачи значение в компонент Button
+
+5. Кнопкам не обязательно знать знать текущее значение count у нашего элемента Counter.js поэтому изменим Button.js
+```js
+function Button({   onClick }){
+    return <button onClick={onClick}>Click me!</button>
+}
+
+export default Button      
+```
+6. Изнмени App.js, добавив функцию increment которая является логикой изменения count, которая будет вызвана при нажатии кнопки 
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+
+
+function App() {
+  const[count , setCount]=useState(0)
+  
+  const Increment= () =>{
+    setCount(count + 1)
+  }
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      <Button onClick = {Increment} />
+      <Button onClick = {Increment} />
+      <Button onClick = {Increment} />
+      <Button onClick = {Increment} />
+      <Button onClick = {Increment} />
+      
+    </div>
+  );
+}
+
+export default App;
+     
+```
+        
+
+
+
+
+
+
+
+        _________________________
 	
 	
 	
