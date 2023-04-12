@@ -441,9 +441,9 @@ export default App;
 2. Передадим занчения в сам компонент: src\components\Countter.js
         
 ```js
-function Countter({counter}){
+function Countter({count}){
     return(
-    <h1>Total click: {counter}</h1>
+    <h1>Total click: {count}</h1>
     )
 }
 export default Countter
@@ -534,6 +534,182 @@ export default App;
      
 ```
         
+<a name ="methodMap"></a>
+## метод map
+Используем предудущий пример
+
+1. Сздадим и добавим доступ к свойству текст для Button.js
+```js
+function Button({  text, onClick }){
+    return <button onClick={onClick}>{text}</button>
+}
+
+export default Button 	
+	
+```
+2. Создадим массив texts с именами кнопок в App.js
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+const texts = ["click me", "click","click me please","CLICK","neCLick"]
+
+function App() {
+  const[count , setCount]=useState(0)
+  
+  const Increment= () =>{
+    setCount(count + 1)
+  }
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      {
+        texts.map((i)=>{
+          return (
+            <Button text = {i} onClick={Increment}/>
+          )
+        })
+      }
+      
+      
+    </div>
+  );
+}
+
+export default App;
+```
+3. Передадим имена в кнопки  в App.js
+```js
+<Button text = {texts[0]} onClick={Increment}/>	
+```
+	
+4. переберм массив и создадим кнопки в элементе в App.js
+	
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+const texts = ["click me", "click","click me please","CLICK","neCLick"]
+
+function App() {
+  const [count , setCount]=useState(0)
+  
+  const Increment= () => {
+    setCount(count + 1)
+  }
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      {
+        texts.map((i)=>{
+          return (
+            <Button text = {i} onClick={Increment}/>
+          )
+        })
+      }
+      <Button text = {texts[0]} onClick={Increment}/>
+      
+      
+    </div>
+  );
+}
+
+export default App;	
+```
+
+
+5. Исрпавим консольную ошибку:\
+Warning: Each child in a list should have a unique "key" prop. \
+для этого добавим свойство key в prop
+	
+- (рекомендуется) если все значения в массиве уникальны то можно использовать их
+
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+const texts = ["click me", "click","click me please","CLICK","neCLick"]
+
+function App() {
+  const [count , setCount]=useState(0)
+  
+  const Increment= () => {
+    setCount(count + 1)
+  }
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      {
+        texts.map((i)=>{
+          return (
+            <Button 
+            key ={i} // КЛЮЧ i как как каждый элемент переходит через i
+            text = {i} 
+            onClick={Increment}/>
+          )
+        })
+      }
+      <Button text = {texts[0]} onClick={Increment}/>
+      
+      
+    </div>
+  );
+}
+
+export default App;	
+```
+- если есть повторы то можно добавить Index в сам map и использовать его
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+const texts = ["click me", "click","click me please","CLICK","neCLick"]
+
+function App() {
+  const [count , setCount]=useState(0)
+  
+  const Increment= () => {
+    setCount(count + 1)
+  }
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      {
+        texts.map((i,index)=>{
+          
+          return (
+            <Button 
+            key ={index}
+            text = {i} 
+            onClick={Increment}/>
+          )
+        })
+      }
+      <Button text = {texts[0]} onClick={Increment}/>
+      
+      
+    </div>
+  );
+}
+
+export default App;	
+```
+
+
+
+
 
 
 
