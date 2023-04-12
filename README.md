@@ -710,21 +710,188 @@ export default App;
 ## Итерация по массиву объектов
 0. Сегенрируем массив объектов используя сервис https://www.mockaroo.com/
 	|Filed Name|Type|Options|
-	|:---|:---|:----|
+	|:---|:---|:----:|
 	|id|Row Number|0|
 	|firstName|First Name|0|
 	|LastName| Last Name|0|
 	|emal|Email ADdress|0|
 	|avatar|Avatar|150x150|
+format: JSON
 
+1-3. Выполним все действия по созданию и запуска шаблона
+4. Создади папку data и поместим в нее наш массив объектов (\07\src\data\persons.js)
+```js
+const presons = [{
+    "id": 1,
+    "firstName": "Lorena",
+    "lastName": "Itzig",
+    "email": "litzig0@sbwire.com",
+    "avatar": "error: wrong number of arguments (given 3, expected 0)"
+  }, 
+	//..........................
+	{
+    "id": 100,
+    "firstName": "Hulda",
+    "lastName": "Clementi",
+    "email": "hclementi1@barnesandnoble.com",
+    "avatar": "error: wrong number of arguments (given 3, expected 0)"
+  }]
+```
 
+5. Имортируем persons В app.js и выполним итеррацию по массиву объекту в файле src/App.js
+	
+```js
+import './App.css';
+import persons from './data/persons.js'
 
+function App() {
+  return (
+    <div className="App">
+    {
+      persons.map((person)=>{
+        return  ( 
+          <> // КАК ДИВ НО НЕ ДИВ, прост группировать объекты
+          <h1>{person.id}</h1>
+          <h3>{person.firstName}</h3>
+          <h3>{person.lastName}</h3>
+          <p>{person.email}</p>
+          <br />
+          </>
+          
+          )
+      })
+    
+    }
+    
+      
+    </div>
+  );
+}
 
+export default App;
+	
+```
+	
+6. Создадим компонент \07\src\components\Person.js и имортируем его в App.js
+```js
+const Person = ({ id, firstName, lastName, email }) =>{
+    return(
+        <><h1>id = {id}</h1>
+        <h3>firstName = {firstName}</h3>
+        <h3>lastName = {lastName}</h3>
+        <p>email = {email}</p>
+        <br /></>
+    )
+}
+export default Person
+```
+7. Передача параметров в компонент  Person
+1- способ  src/App.js
+```js
+function App() {
+  return (
+    <div className="App">
+    
+    {
+      persons.map((person)=>{
+        return(
+          <Person 
+            id = {person.id}
+            firstName = {person.firstName}
+            lastName = {person.lastName}
+            email = {person.email}
+          />
+        )
+      })    
+    }
+    </div>
+  );
+}
 
+export default App;
 
+```
 
+2- Способ 
+```js
+function App() {
+  return (
+    <div className="App">
+    {
+      persons.map((person)=>{
+        const {id,firstName,lastName,email} = person
+        return(
+          <Person 
+            id = {id}
+            firstName = {firstName}
+            lastName = {lastName}
+            email = {email}
+          />
+        )
+      })
+    }
+    </div>
+  );
+}
+```
 
+3- способ
+```js
+function App() {
+  return (
+    <div className="App">
+    {
+      persons.map(({id,firstName,lastName,email})=>{
+        return(
+          <Person 
+            id = {id}
+            firstName = {firstName}
+            lastName = {lastName}
+            email = {email}
+          />
+        )
+      })
+    }
+    </div>
+  );
+}
+```
+
+7. Облегчим код при используя spread operator
+```js
+function App() {
+  return (
+    <div className="App">
+    {
+      persons.map((person)=>{
+        return(
+          <Person 
+            key = {person.id}
+            {...person}
+          />
+        )
+      })
+    }
+    </div>
+  );
+}
+```
+8. Изменим Person.js
+```js
+const Person = (props) =>{
+    const {id, firstName, lastName, email} = props
+    return(
+        <><h1>id = {id}</h1>
+        <h3>firstName = <h2>{firstName}</h2></h3>
+        <h3>lastName = {lastName}</h3>
+        <p>email = {email}</p>
+        <br /></>
+    )
+}
+export default Person
+```
         _________________________
+	
 	
 	
 	
