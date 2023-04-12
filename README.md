@@ -707,8 +707,15 @@ function App() {
 export default App;	
 ```
 
-
-
+## Итерация по массиву объектов
+0. Сегенрируем массив объектов используя сервис https://www.mockaroo.com/
+	|Filed Name|Type|Options|
+	|:---|:---|:----|
+	|id|Row Number|0|
+	|firstName|First Name|0|
+	|LastName| Last Name|0|
+	|emal|Email ADdress|0|
+	|avatar|Avatar|150x150|
 
 
 
