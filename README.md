@@ -1019,7 +1019,101 @@ export default ResetCounter
 ```
 ## Проект по неконтролируемым полям ввода
 1-3. Создаем шаблон
-4. Отредактируем стили App.css
+4. Отредактируем стили index.css
+```css
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box ;
+}
+body{
+  text-align: center;
+  background-color: lightsteelblue;
+}
+
+
+```
+4. Отредактируем App.css
+```css
+.App{
+ text-align: center;
+}
+h1{
+  font-size: 3.5rem;
+  color: black;
+}
+
+button{
+  padding: 10px 20px;
+  background-color: antiquewhite;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+form{
+  font-size: 30px;
+}
+
+input{
+  margin: 15px;
+  padding: 20px 25px;
+}
+
+label{
+  display: block;
+}
+
+
+
+```
+5.Создадим компонент \09\src\components\Login.js
+```js
+const Login = ()=>{
+    return(
+
+    )
+}
+export { Login }
+```
+6. Отредактируем данный компонент: 
+```js
+const Login = ()=>{
+    return(
+        <>
+        <h1>Login form</h1>
+        <form>
+            <label>
+                UserName : <input type = "text" name="username"/>
+            </label>
+            <label>
+                Password : <input type = "password" name="password"/>
+            </label>
+            <button type="submit">Login</button>
+        </form>
+        </>
+    )
+}
+export { Login }
+```
+
+Импортируем все в App.js
+```js
+import './App.css';
+import {Login} from './components/Login.js'
+
+function App() {
+  return (
+    <div className="App">
+
+    <Login></Login>
+    </div>
+  );
+}
+
+export default App;
+
+```
         _________________________
 	
 	
