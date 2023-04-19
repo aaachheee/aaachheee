@@ -890,6 +890,136 @@ const Person = (props) =>{
 }
 export default Person
 ```
+
+## Логический оператор И для скрытия и отображения кода
+(воспользуюмся 6 проектом)
+
+1. отредактировать файл App.js
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+
+const texts = ["click me", "click","click me please","CLICK","neCLick"]
+
+
+function App() {
+  const [count , setCount]=useState(0)
+  
+  const Increment= () => {
+    setCount(count + 1)
+  }
+  const ResetCounter = () =>{ // Дбавили это
+    setCount(0)
+  }
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      {
+        texts.map((i,index)=>{
+          
+          return (
+            <Button 
+            key ={index}
+            text = {i} 
+            onClick={Increment}/>
+          )
+        })
+        
+      }
+      <Button 
+       
+        text = {"RESET"} 
+        onClick={ResetCounter} // Вызываем
+
+      />
+      
+      
+      
+    </div>
+  );
+}
+
+export default App;
+```
+2. Дбавим оператор короткого замыкания (оператор И)
+логика:
+{операнд1 && операнд2} 
+
+3. Изменим App.js
+```js
+import {useState} from 'react'
+
+import './App.css';
+import Button from './components/Button'
+import Countter from './components/Countter'
+import ResetCount from './components/ResetCounter'
+
+const texts = ["click me", "click","click me please","CLICK","neCLick"]
+
+
+function App() {
+  const [count , setCount]=useState(0)
+  
+  const Increment= () => {
+    setCount(count + 1)
+  }
+  const ResetCo = () =>{
+    setCount(0)
+  }
+  return (
+    <div className="App">
+      
+      <Countter count = {count}/>
+      {texts.map((i,index)=>{
+          
+          return (
+            <Button 
+            key ={index}
+            text = {i} 
+            onClick={Increment}/>
+          )
+        })
+      }
+      <ResetCount count = {count} onClick={ResetCo}/>
+      
+      {/* <Button 
+        text = {"RESET"} 
+        onClick={ResetCounter}
+      />
+       */}
+      
+      
+    </div>
+  );
+}
+
+export default App;
+```
+6.Создадим новый компонент ResetCounter.js в который поместим логический оператор
+ResetCounter.js
+```js
+import './Button.css';
+function ResetCounter ({count, onClick}){
+    return(
+      count>0 && ( // Логический оператор
+        <div>
+          <button onClick ={onClick}>
+            reset
+          </button>
+        </div>
+      )
+    )
+  
+}
+export default ResetCounter
+```
+## Проект по неконтролируемым полям ввода
+1-3. Создаем шаблон
+4. Отредактируем стили App.css
         _________________________
 	
 	
