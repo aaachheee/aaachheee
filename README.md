@@ -1114,7 +1114,157 @@ function App() {
 export default App;
 
 ```
-        _________________________
+
+7. отредактируем компонент Login.js добавив Onsubmit (Onsubmit - событие, вкотором отправляется форма)
+создадим функцию ______ с параметром Event 
+создадим вызов метода ______ для объектка event (надо чтобы страница никуда не переходила)
+добавим вывод данных в консоль
+Login.js
+
+```js
+const Login = ()=>{
+    const handleFormSubmit = (event) =>{
+        event.preventDefault()
+        console.log(event.target.username.value)
+        console.log(event.target.password.value)
+    }
+    return(
+        <>
+        <h1>Login form</h1>
+        <form onSubmit = {handleFormSubmit}>
+            <label>
+                UserName :{" "} <input type = "text" name="username"/>
+            </label>
+            <label>
+                Password : <input type = "password" name="password"/>
+            </label>
+            <button type="submit">Login</button>
+        </form>
+        </>
+    )
+}
+export { Login }
+```
+v1- вывод данных напрямую в консоль
+изменим функцию handleFormSubmit
+```js
+const handleFormSubmit = (event) =>{
+        event.preventDefault()// для того чтобы страница никуда не переходила
+        console.log(event.target.username.value)
+        console.log(event.target.password.value)
+
+        
+    }
+```
+v2- вывод данных как объект с двумя свойствами
+```js
+const handleFormSubmit = (event) =>{
+        event.preventDefault() // для того чтобы страница никуда не переходила
+
+
+        const UserData = {
+            username: event.target.username.value,
+            password:event.target.password.value,
+        }
+        console.log(UserData)
+    }
+```
+### Неконтролируемые поля обычно не используют
+
+
+## Проект по контролируемым полям
+(Создадим проект 10 используя 9 проект)
+1. Редактируем Login.js 
+Избавиться от name у input 
+добавим состояния useState (import {useState} from 'react')
+добавить обработчик нажатий на клавиатуру onChange для value
+для этого отредактируем комопнент Login.js
+```js
+import {useState} from 'react'
+const Login = ()=>{
+    const [username,setUsername] = useState('')
+    const [password,setPassword] = useState('')
+
+    const handleFormSubmit = (event) =>{
+        event.preventDefault()
+        //console.log(event.target.username.value)
+        //console.log(event.target.password.value)
+
+        const UserData = {
+            // username: username,
+            // password:password,
+            // или 
+            username,
+            password,
+        }
+        console.log(UserData)
+    }
+    return(
+        <>
+        <h1>Login form</h1>
+        <form onSubmit = {handleFormSubmit}>
+            <label>
+                UserName : <input type = "text" value ={username} onChange ={(event)=>setUsername(event.target.value)}/>
+            </label>
+            <label>
+                Password : <input type = "password" value= {password} onChange ={(event)=>setPassword(event.target.value)}/>
+            </label>
+            <button type="submit">Login</button>
+        </form>
+        </>
+    )
+}
+export { Login }
+```
+Оптимизируем код Login.js
+```js
+import {useState} from 'react'
+const Login = ()=>{
+    const [data, setData] = useState({username:'',password: ''})
+
+    const [username,setUsername] = useState('')
+    const [password,setPassword] = useState('')
+
+    const handleFormSubmit = (e) =>{
+        e.preventDefault()
+        console.log(data)
+    }
+    return(
+        <>
+        <h1>Login form</h1>
+        <form onSubmit = {handleFormSubmit}>
+            <label>
+                UserName :
+                 <input type = "text"
+                 value ={data.username}
+                onChange ={(e)=> {
+                    console.log(e.target.value)
+                    setData({...data,username: e.target.value})
+                } 
+                
+                }
+
+                />
+            </label>
+            <label>
+                Password : <input 
+                type = "password"
+                value= {data.password}
+                onChange ={(e)=>setData({...data,password: e.target.value})}
+
+                />
+            </label>
+            <button type="submit">Login</button>
+        </form>
+        </>
+    )
+}
+export { Login }
+```
+
+_____
+
+____________________
 	
 	
 	
