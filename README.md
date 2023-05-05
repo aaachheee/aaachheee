@@ -1263,6 +1263,72 @@ export { Login }
 ```
 
 _____
+## Проект с использованием свойства children (встраивание одних компонентов в другие)
+(создадим проект 11 используя шаблон)
+
+создали компонент src\components\Wrapper.js
+```js
+const Wrapper = () =>{
+    return<div></div>
+}
+
+export {Wrapper}
+
+```
+Передадим свойства children через компонент Wrapper в src\App.js
+```js
+import './App.css';
+import {Wrapper} from './components/Wrapper.js'
+
+function App() {
+  return (
+    <div className="App">
+    <Wrapper>
+      <h2>Text inside of the wrapper</h2>
+      <button>Click me!</button>
+    </Wrapper>
+    
+    </div>
+  );
+}
+
+export default App;
+```
+поулчим все свойства в src\components\Wrapper.js
+```js
+const Wrapper = (props) =>{
+    return<div>
+        {props.children}
+    </div>
+}
+
+export {Wrapper}
+```
+Добавим стилей и передадим их
+```js
+import './App.css';
+import {Wrapper} from './components/Wrapper.js'
+
+function App() {
+  return (
+    <div className="App">
+    <Wrapper color="lightblue">
+      <h2>Text inside of the wrapper</h2>
+      <button>Click me!</button>
+    </Wrapper>
+     <Wrapper color="lightblue">
+      <h2>2 Text inside of the wrapper</h2>
+      <p>Some desription</p>
+      <input type="text" placeholder="enter value"/>
+    </Wrapper>
+    
+    </div>
+  );
+}
+
+export default App;
+
+```
 
 ____________________
 	
